@@ -8,7 +8,8 @@ module.exports.INSERT_ANSWER = async (req, res) => {
     const answer = new AnswerModel({
       id: uniqid(),
       answer: req.body.answer,
-      likes: [],
+      likes: 0,
+      written_by: req.body.userId,
     });
   
     const savedAnswer = await answer.save();
@@ -16,6 +17,11 @@ module.exports.INSERT_ANSWER = async (req, res) => {
     QuestionModel.updateOne(
       { id: req.params.id },
       { $push: { answers: savedAnswer.id } }
+    ).exec();
+
+    UserModel.updateOne(
+      { id: req.body.userId },
+      { $push: { createdAnswers: savedAnswer.id } }
     ).exec();
   
     res.status(200).json({ response: savedAnswer.id });
@@ -38,3 +44,8 @@ module.exports.GET_ANSWER = async (req, res) => {
     res.status(500).json({ response: "ERROR, please try later" });
   }
 };
+
+module.exports.DELETE_ANSWER = async (req, res) => {
+  await QuestionModel.deleteOne({ id: req.params.id });
+  res.status(200).json({ response: "Question was deleted" });
+}

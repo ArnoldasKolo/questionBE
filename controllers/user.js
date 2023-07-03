@@ -68,6 +68,7 @@ module.exports.SIGNUP = async (req, res) => {
           password: hash,
           phone:req.body.phone,
           createdPosts: [],
+          createdAnswers: [],
         });
 
         await user.save();
@@ -84,7 +85,7 @@ module.exports.GET_ALL_USERS_QUESTIONS = async (req, res) => {
     const aggregatedQuestions = await UserModel.aggregate([
       {
         $lookup: {
-          from: "question",
+          from: "questions",
           localField: "createdQuestions",
           foreignField: "id",
           as: "createdQuestions",
@@ -94,6 +95,27 @@ module.exports.GET_ALL_USERS_QUESTIONS = async (req, res) => {
     ]).exec();
 
     res.status(200).json({ user: aggregatedQuestions });
+  } catch (err) {
+    console.log("ERR", err);
+    res.status(500).json({ response: "ERROR, please try later" });
+  }
+};
+
+module.exports.GET_ALL_USERS_ANSWERS = async (req, res) => {
+  try {
+    const aggregatedAnswers = await UserModel.aggregate([
+      {
+        $lookup: {
+          from: "answers",
+          localField: "createdAnswers",
+          foreignField: "id",
+          as: "createdAnswers",
+        },
+      },
+      { $match: { id: req.body.userId } },
+    ]).exec();
+
+    res.status(200).json({ user: aggregatedAnswers });
   } catch (err) {
     console.log("ERR", err);
     res.status(500).json({ response: "ERROR, please try later" });

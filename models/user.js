@@ -6,6 +6,7 @@ const userSchema = mongoose.Schema({
   email: { type: String, required: true, min: 8 },
   password: { type: String, required: true, min: 6 },
   createdQuestions:{ type: Array, required: false },
+  createdAnswers:{ type: Array, required: false },
 });
 
 module.exports = mongoose.model("User", userSchema);

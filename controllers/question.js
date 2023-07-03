@@ -10,6 +10,7 @@ module.exports.INSERT_QUESTION = async (req, res) => {
       question: req.body.question,
       description: req.body.description,
       answers: [],
+      written_by: req.body.userId,
     });
   
     const savedQuestion = await question.save();
@@ -52,7 +53,7 @@ module.exports.GET_QUESTION_ANSWERS = async (req, res) => {
     const aggregatedAnswers = await QuestionModel.aggregate([
       {
         $lookup: {
-          from: "answer",
+          from: "answers",
           localField: "answers",
           foreignField: "id",
           as: "answers",

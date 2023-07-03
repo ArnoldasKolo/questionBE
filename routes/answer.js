@@ -5,12 +5,13 @@ const {
     INSERT_ANSWER,
     GET_ANSWERS,
     GET_ANSWER,
+    DELETE_ANSWER,
 } = require("../controllers/answer");
 
-router.post("/answer",authMiddleware,  INSERT_ANSWER);
-router.get("/answers", GET_ANSWERS);
-router.get("/answer/:id", GET_ANSWER);
-
+router.post("/question/:id/answer",authMiddleware,  INSERT_ANSWER);
+router.get("/question/:id/answers", GET_ANSWERS);
+router.get("/question/:id/answer", GET_ANSWER);
+router.delete("/deleteAnswer/:id",DELETE_ANSWER);
 
 
 
