@@ -2,18 +2,18 @@ const express = require("express");
 const router = express.Router();
 const authMiddleware = require("../middleware/auth");
 const {
-    INSERT_POST,
-    UPDATE_POST,
-    DELETE_POST,
-    GET_POSTS,
-    GET_POST,
+    INSERT_ANSWER,
+    GET_ANSWERS,
+    GET_ANSWER,
+    UPDATE_ANSWER,
+    DELETE_ANSWER,
 } = require("../controllers/post");
 
-router.post("/post",authMiddleware,  INSERT_POST);
-router.get("/posts", GET_POSTS);
-router.get("/post/:id", GET_POST);
-router.put("/post/update/:id", authMiddleware,UPDATE_POST);
-router.delete("/deletePost/:id",DELETE_POST);
+router.post("/answer",authMiddleware,  INSERT_ANSWER);
+router.get("/answers", GET_ANSWERS);
+router.get("/answer/:id", GET_ANSWER);
+router.put("/answer/update/:id", authMiddleware,UPDATE_ANSWER);
+router.delete("/deleteAnswer/:id",DELETE_ANSWER);
 
 
 

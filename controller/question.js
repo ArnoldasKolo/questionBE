@@ -1,19 +1,15 @@
 const UserModel = require("../models/user");
-const PostModel = require("../models/post");
+const QuestionModel = require("../models/question");
 
 const uniqid = require("uniqid");
 
-module.exports.INSERT_POST = async (req, res) => {
+module.exports.INSERT_QUESTION = async (req, res) => {
   try{
-    const post = new PostModel({
+    const post = new QuestionModel({
       id: uniqid(),
-      title: req.body.title,
-      console: req.body.console,
-      form: req.body.form,
-      price: req.body.price,
+      question: req.body.question,
       description: req.body.description,
-      photo: req.body.photo,
-      written_by: req.body.userId,
+      answers: [],
     });
   
     const savedPost = await post.save();

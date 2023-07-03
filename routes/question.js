@@ -9,10 +9,11 @@ const {
     DELETE_QUESTION,
 } = require("../controllers/post");
 
-router.post("/post",authMiddleware,  INSERT_QUESTION);
-router.get("/posts", GET_QUESTIONS);
-router.get("/post/:id", GET_QUESTION);
-router.put("/post/update/:id", authMiddleware,UPDATE_QUESTION);
+router.post("/question",authMiddleware,  INSERT_QUESTION);
+router.get("/questions", GET_QUESTIONS);
+router.get("/question/:id", GET_QUESTION);
+router.get("/question/answers/:id", GET_QUESTION_ANSWERS);
+router.put("/question/update/:id", authMiddleware,UPDATE_QUESTION);
 router.delete("/deletePost/:id",DELETE_QUESTION);
 
 

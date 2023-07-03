@@ -1,29 +1,24 @@
 const UserModel = require("../models/user");
-const PostModel = require("../models/post");
-
+const AnswerModel = require("../models/answer");
+const QuestionModel = require("../models/question");
 const uniqid = require("uniqid");
 
-module.exports.INSERT_POST = async (req, res) => {
+module.exports.INSERT_ANSWERS = async (req, res) => {
   try{
-    const post = new PostModel({
+    const answer = new AnswerModel({
       id: uniqid(),
-      title: req.body.title,
-      console: req.body.console,
-      form: req.body.form,
-      price: req.body.price,
-      description: req.body.description,
-      photo: req.body.photo,
-      written_by: req.body.userId,
+      answer: req.body.answer,
+      likes: [],
     });
   
-    const savedPost = await post.save();
+    const savedAnswer = await answer.save();
   
-    UserModel.updateOne(
-      { id: req.body.userId },
-      { $push: { createdPosts: savedPost.id } }
+    QuestionModel.updateOne(
+      { id: req.params.id },
+      { $push: { answers: savedAnswer.id } }
     ).exec();
   
-    res.status(200).json({ response: savedPost.id });
+    res.status(200).json({ response: savedAnswer.id });
   }catch(err){
     res.status(500).json({ response: "All fields needs to be filled" })
   }
