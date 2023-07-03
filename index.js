@@ -6,13 +6,15 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 app.use(cors())
 
-const postsRouter = require("./routes/post");
+const question = require("./routes/question");
+const answer = require("./routes/answer");
 const user = require("./routes/user");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(postsRouter);
+app.use(question);
+app.use(answer);
 app.use(user);
 
 
