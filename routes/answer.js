@@ -5,9 +5,7 @@ const {
     INSERT_ANSWER,
     GET_ANSWERS,
     GET_ANSWER,
-    UPDATE_ANSWER,
-    DELETE_ANSWER,
-} = require("../controllers/post");
+} = require("../controllers/answer");
 
 router.post("/answer",authMiddleware,  INSERT_ANSWER);
 router.get("/answers", GET_ANSWERS);

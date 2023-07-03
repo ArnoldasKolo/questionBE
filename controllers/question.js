@@ -30,7 +30,7 @@ module.exports.GET_QUESTIONS = async (req, res) => {
   res.status(200).json({ questions: questions });
 };
 
-module.exports.GET_POST = async (req, res) => {
+module.exports.GET_QUESTION = async (req, res) => {
   try {
     const question = await QuestionModel.findOne({ id: req.params.id });
     res.status(200).json({ question: question });
@@ -42,7 +42,7 @@ module.exports.GET_POST = async (req, res) => {
 
 
 
-module.exports.DELETE_POST = async (req, res) => {
+module.exports.DELETE_QUESTION = async (req, res) => {
   await QuestionModel.deleteOne({ id: req.params.id });
   res.status(200).json({ response: "Question was deleted" });
 };

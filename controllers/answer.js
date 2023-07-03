@@ -3,7 +3,7 @@ const AnswerModel = require("../models/answer");
 const QuestionModel = require("../models/question");
 const uniqid = require("uniqid");
 
-module.exports.INSERT_ANSWERS = async (req, res) => {
+module.exports.INSERT_ANSWER = async (req, res) => {
   try{
     const answer = new AnswerModel({
       id: uniqid(),

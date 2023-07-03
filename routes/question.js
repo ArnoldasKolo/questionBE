@@ -5,9 +5,9 @@ const {
     INSERT_QUESTION,
     GET_QUESTIONS,
     GET_QUESTION,
-    UPDATE_QUESTION,
     DELETE_QUESTION,
-} = require("../controllers/post");
+    GET_QUESTION_ANSWERS
+} = require("../controllers/question");
 
 router.post("/question",authMiddleware,  INSERT_QUESTION);
 router.get("/questions", GET_QUESTIONS);
