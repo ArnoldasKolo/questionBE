@@ -12,8 +12,6 @@ const {
 router.post("/answer",authMiddleware,  INSERT_ANSWER);
 router.get("/answers", GET_ANSWERS);
 router.get("/answer/:id", GET_ANSWER);
-router.put("/answer/update/:id", authMiddleware,UPDATE_ANSWER);
-router.delete("/deleteAnswer/:id",DELETE_ANSWER);
 
 
 

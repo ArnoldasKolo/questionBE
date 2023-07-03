@@ -79,7 +79,7 @@ module.exports.SIGNUP = async (req, res) => {
   }
 };
 
-module.exports.GET_ALL_USERS_POSTS = async (req, res) => {
+module.exports.GET_ALL_USERS_QUESTIONS = async (req, res) => {
   try {
     const aggregatedPosts = await UserModel.aggregate([
       {
