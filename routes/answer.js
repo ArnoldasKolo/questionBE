@@ -6,11 +6,15 @@ const {
     GET_ANSWERS,
     GET_ANSWER,
     DELETE_ANSWER,
+    LIKE,
+    DISLIKE
 } = require("../controllers/answer");
 
 router.post("/question/:id/answer",authMiddleware,  INSERT_ANSWER);
 router.get("/question/:id/answers", GET_ANSWERS);
 router.get("/question/:id/answer", GET_ANSWER);
+router.put("/like/:id", LIKE);
+router.put("/dislike/:id", DISLIKE);
 router.delete("/deleteAnswer/:id",DELETE_ANSWER);
 
 

@@ -46,6 +46,35 @@ module.exports.GET_ANSWER = async (req, res) => {
 };
 
 module.exports.DELETE_ANSWER = async (req, res) => {
-  await QuestionModel.deleteOne({ id: req.params.id });
-  res.status(200).json({ response: "Question was deleted" });
+  await AnswerModel.deleteOne({ id: req.params.id });
+  res.status(200).json({ response: "Answer  was deleted" });
 }
+
+module.exports.LIKE = async (req, res) => {
+  try {
+    await AnswerModel.updateOne(
+      { id: req.params.id },
+      { $inc: { likes: 1 } }
+    );
+
+    res.status(200).json({ response: 'Likes updated successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred' });
+  }
+};
+
+
+module.exports.DISLIKE = async (req, res) => {
+  try {
+    await AnswerModel.updateOne(
+      { id: req.params.id },
+      { $inc: { likes: -1 } }
+    );
+
+    res.status(200).json({ response: 'Dislikes updated successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred' });
+  }
+};
