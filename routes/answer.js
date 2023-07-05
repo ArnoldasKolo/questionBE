@@ -13,8 +13,8 @@ const {
 router.post("/question/:id/answer",authMiddleware,  INSERT_ANSWER);
 router.get("/question/:id/answers", GET_ANSWERS);
 router.get("/question/:id/answer", GET_ANSWER);
-router.put("/like/:id", LIKE);
-router.put("/dislike/:id", DISLIKE);
+router.put("/like/:id",authMiddleware, LIKE);
+router.put("/dislike/:id",authMiddleware, DISLIKE);
 router.delete("/deleteAnswer/:id",DELETE_ANSWER);
 
 
